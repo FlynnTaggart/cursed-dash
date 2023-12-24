@@ -5,6 +5,7 @@ import flask
 import df_init
 import time
 import os
+import json
 
 debug = False if os.environ["DASH_DEBUG_MODE"] == "False" else True
 
@@ -14,6 +15,15 @@ external_stylesheets = [
     "https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap"
 ]
 
+@server.route('/1/3/3/7/refresh', methods=['POST'])
+def refresh():
+    # haha so funny
+    df_init.df = pd.read_csv('SberData.csv')
+    df_init.df = df_init.df.pivot_table(index = ["region", "date"], columns = "name", values = "value", aggfunc = "mean", fill_value = 0).reset_index()
+    df_init.df = df_init.df[df_init.df["region"] != "Russia"]
+    df_init.df['month'] = df_init.df["date"].apply(lambda t: time.strptime(t, '%Y-%m-%d').tm_mon)
+    df_init.df['year'] = df_init.df["date"].apply(lambda t: time.strptime(t, '%Y-%m-%d').tm_year)
+    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
 
 app = Dash(name=__name__, server=server, title="Amazing Region Banking", use_pages=True, external_stylesheets=external_stylesheets)
 

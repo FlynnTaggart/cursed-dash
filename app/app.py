@@ -7,7 +7,12 @@ import time
 import os
 import json
 
-debug = False if os.environ["DASH_DEBUG_MODE"] == "False" else True
+debug = True
+
+try:
+    debug = False if os.environ["DASH_DEBUG_MODE"] == "False" else True
+except:
+    debug = True
 
 server = flask.Flask(__name__, template_folder='static')
 

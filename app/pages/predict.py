@@ -55,20 +55,24 @@ def update_main_graph(value_region, value_parameter, value_year):
     
     period = 0
     if value_year > dff.year.max():
-        period = (value_year - dff.year.max()) * 12 
+        period = (value_year - dff.year.max()) * 12 + 24
 
-    m = Prophet()
+    m = Prophet(weekly_seasonality=True)
 
     m.fit(dff_p)
     future = m.make_future_dataframe(periods=period,  freq='MS')
 
     forecast = m.predict(future)
 
-    w=np.hanning(15)
-    forecast['yhat']=np.convolve(w/w.sum(),forecast['yhat'],mode='same') 
+    w=15
+    filt = np.ones(w)/w
+    forecast['yhat'] = np.convolve(forecast['yhat'], filt, mode='same')
+
     w=np.hanning(5)
     forecast['yhat_lower']=np.convolve(w/w.sum(),forecast['yhat_lower'],mode='same') 
     forecast['yhat_upper']=np.convolve(w/w.sum(),forecast['yhat_upper'],mode='same') 
+
+    forecast = forecast.iloc[:-24]
 
     fig = plot_plotly(m, forecast)
 

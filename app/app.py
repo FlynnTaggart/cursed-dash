@@ -30,11 +30,11 @@ def refresh():
     df_init.df['year'] = df_init.df["date"].apply(lambda t: time.strptime(t, '%Y-%m-%d').tm_year)
     return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
 
-app = Dash(name=__name__, server=server, title="Amazing Region Banking", use_pages=True, external_stylesheets=external_stylesheets)
+app = Dash(name=__name__, server=server, title="БАСТ", use_pages=True, external_stylesheets=external_stylesheets)
 
 app.layout = html.Div([
     html.Img(src='assets/paw.png',style={'display':'inline-block', 'width': '32pt', 'height': '32pt','margin-right':'16pt'}),
-    html.H1('Welcome to my banking region analytics system', style={"font-family": "'Anonymous Pro'", 'display':'inline-block'}),
+    html.H1('БАСТ', style={"font-family": "'Anonymous Pro'", 'display':'inline-block'}),
     html.Div([
         html.Div(
             dcc.Link(f"{page['name']}", href=page["relative_path"])

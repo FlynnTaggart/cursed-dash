@@ -5,13 +5,15 @@ import df_init
 import plotly.graph_objs as go
 import pandas as pd
 
-dash.register_page(__name__)
+dash.register_page(__name__, name='Аналитика', title='Аналитика')
 
 
 layout = html.Div([
-    html.H1(children='Main analytic', style={'textAlign':'center',"font-family": "'Anonymous Pro'"}),
-    dcc.Dropdown(df_init.df.region.unique(), 'Altai region', id='dropdown-region', style={"font-family": "'Anonymous Pro'",'margin-bottom':'16px', 'width':'500px'}),
-    dcc.Dropdown(df_init.df[['Average Fast Food format Check', \
+    html.H1(children='Аналитика', style={'textAlign':'center',"font-family": "'Anonymous Pro'"}),
+    html.P(children=["Регион: ", dcc.Dropdown(df_init.df.region.unique(), 'Altai region', id='dropdown-region', style={"font-family": "'Anonymous Pro'",'width':'400px','display':'inline-block'})],
+                style={"font-family": "'Anonymous Pro'", 'display':'inline-block', 'padding-bottom':'8pt'}),
+    html.Br(),
+    html.P(children=["Параметр: ",  dcc.Dropdown(df_init.df[['Average Fast Food format Check', \
         'Average amount of new deposit', \
         'Average check in Restaurant format', \
         'Average consumer loan application', \
@@ -25,20 +27,20 @@ layout = html.Div([
         'On average, deposits in rubles per person', \
         'The average amount of a mortgage application', \
         'The number of applications for consumer loans', \
-        'The number of applications for mortgages']].columns, 'The average amount of a mortgage application', id='dropdown-parameter', style={"font-family": "'Anonymous Pro'",'margin-bottom':'32px','width':'500px'}),
+        'The number of applications for mortgages']].columns, 
+        'The average amount of a mortgage application', id='dropdown-parameter',
+        style={"font-family": "'Anonymous Pro'",'width':'500px','display':'inline-block'})],
+        style={"font-family": "'Anonymous Pro'",'display':'inline-block'}),
     dcc.Graph(id='main-graph'),
-    html.Div(
-        dcc.Input(
-                2016,
-                min=2000, max=2024, step=1,
-                id='input-year',
-                type='number',
-                placeholder="input type {}".format('number'),
-                size='40',
-                style={"font-family": "'Anonymous Pro'",'margin-bottom':'16px', 'width':'200px', 'font-size':'14pt','padding' : '5px 10px'}
-            )
-
-    ),
+     html.P(children=["Год: ", dcc.Input(
+        2016,
+        min=2000, max=2099, step=1,
+        id='input-year',
+        type='number',
+        placeholder="input type {}".format('number'),
+        size='40',
+        style={"font-family": "'Anonymous Pro'", 'width':'200px', 'font-size':'14pt','padding' : '5px 10px'}
+    )],style={"font-family": "'Anonymous Pro'",'display':'inline-block'}),
     dcc.Graph(id='bar'),
     html.Title("Overall visualization")
 ])

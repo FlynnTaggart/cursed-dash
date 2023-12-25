@@ -10,15 +10,15 @@ import numpy as np
 import json
 from urllib.request import urlopen
 
-dash.register_page(__name__)
+dash.register_page(__name__, name='Географическая визуализация', title='Географическая визуализация')
 
 with urlopen('https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/russia.geojson') as response:
     counties = json.load(response)
 
 
 layout = html.Div([
-    html.H1(children='Map visualization', style={'textAlign':'center',"font-family": "'Anonymous Pro'"}),
-    dcc.Dropdown(df_init.df[['Average Fast Food format Check', \
+    html.H1(children='Географическая визуализация данных', style={'textAlign':'center',"font-family": "'Anonymous Pro'"}),
+    html.P(children=["Параметр: ",  dcc.Dropdown(df_init.df[['Average Fast Food format Check', \
         'Average amount of new deposit', \
         'Average check in Restaurant format', \
         'Average consumer loan application', \
@@ -32,8 +32,12 @@ layout = html.Div([
         'On average, deposits in rubles per person', \
         'The average amount of a mortgage application', \
         'The number of applications for consumer loans', \
-        'The number of applications for mortgages']].columns, 'The average amount of a mortgage application', id='dropdown-parameter-map', style={"font-family": "'Anonymous Pro'",'margin-bottom':'32px','width':'500px'}),
-    html.P(children=["Year: ", dcc.Input(
+        'The number of applications for mortgages']].columns, 
+        'The average amount of a mortgage application', id='dropdown-parameter-map',
+        style={"font-family": "'Anonymous Pro'",'width':'500px','display':'inline-block'})],
+        style={"font-family": "'Anonymous Pro'",'display':'inline-block'}),
+    html.Br(),
+    html.P(children=["Год: ", dcc.Input(
         2015,
         min=2000, max=2099, step=1,
         id='input-year-map',
@@ -42,8 +46,8 @@ layout = html.Div([
         size='40',
         style={"font-family": "'Anonymous Pro'", 'width':'200px', 'font-size':'14pt','padding' : '5px 10px'}
     )],style={"font-family": "'Anonymous Pro'",'display':'inline-block'}),
-    html.P(children=["Month: ",  dcc.Dropdown(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], 
-                'January', id='dropdown-month-map', style={"font-family": "'Anonymous Pro'",'width':'400px','display':'inline-block'})],
+    html.P(children=["Месяц: ",  dcc.Dropdown(['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'], 
+                'Январь', id='dropdown-month-map', style={"font-family": "'Anonymous Pro'",'width':'400px','display':'inline-block'})],
                 style={"font-family": "'Anonymous Pro'"}),
     dcc.Graph(id='main-graph-map', config={'responsive':True}),
     html.Title("Map")

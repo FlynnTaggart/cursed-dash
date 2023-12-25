@@ -5,19 +5,19 @@ import df_init
 import plotly.graph_objs as go
 import pandas as pd
 
-dash.register_page(__name__)
+dash.register_page(__name__, name='Ввод данных', title='Ввод данных')
 
 
 layout = html.Div([
-    html.H1(children='Data input', style={'textAlign':'center',"font-family": "'Anonymous Pro'"}),
+    html.H1(children='Ввод данных', style={'textAlign':'center',"font-family": "'Anonymous Pro'"}),
     html.Div(children=[
-        html.H3("You successfully added data", hidden=True, id="page_header", style={"font-family": "'Anonymous Pro'"}),
+        html.H3("Вы успешно добавили данные", hidden=True, id="page_header", style={"font-family": "'Anonymous Pro'"}),
         # login form
         html.Div(children=[
-            html.P(children=["Region: ", dcc.Dropdown(df_init.df.region.unique(), 'Altai region', id='dropdown-region-in', style={"font-family": "'Anonymous Pro'",'width':'400px','display':'inline-block'})],
+            html.P(children=["Регион: ", dcc.Dropdown(df_init.df.region.unique(), 'Altai region', id='dropdown-region-in', style={"font-family": "'Anonymous Pro'",'width':'400px','display':'inline-block'})],
                 style={"font-family": "'Anonymous Pro'", 'display':'inline-block', 'padding-bottom':'8pt'}),
             html.Br(),
-            html.P(children=["Parameter: ",  dcc.Dropdown(df_init.df[['Average Fast Food format Check', \
+            html.P(children=["Параметр: ",  dcc.Dropdown(df_init.df[['Average Fast Food format Check', \
                 'Average amount of new deposit', \
                 'Average check in Restaurant format', \
                 'Average consumer loan application', \
@@ -36,7 +36,7 @@ layout = html.Div([
                 style={"font-family": "'Anonymous Pro'",'width':'500px','display':'inline-block'})],
                 style={"font-family": "'Anonymous Pro'",'display':'inline-block'}),
             html.Br(),
-            html.P(children=["Year: ", dcc.Input(
+            html.P(children=["Год: ", dcc.Input(
                     2020,
                     min=2000, max=2024, step=1,
                     id='input-year-in',
@@ -46,11 +46,11 @@ layout = html.Div([
                     style={"font-family": "'Anonymous Pro'", 'width':'200px', 'font-size':'14pt','padding' : '5px 10px'}
                 )],style={"font-family": "'Anonymous Pro'",'display':'inline-block'}),
             html.Br(),
-            html.P(children=["Month: ",  dcc.Dropdown(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], 
-                'January', id='dropdown-month-in', style={"font-family": "'Anonymous Pro'",'width':'400px','display':'inline-block'})],
+            html.P(children=["Месяц: ",  dcc.Dropdown(['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'], 
+                'Январь', id='dropdown-month-in', style={"font-family": "'Anonymous Pro'",'width':'400px','display':'inline-block'})],
                 style={"font-family": "'Anonymous Pro'", 'display':'inline-block', 'padding-bottom':'8pt'}),
             html.Br(),
-            html.P(children=["Value: ", dcc.Input(
+            html.P(children=["Значение: ", dcc.Input(
                     step=1,
                     id='input-value-in',
                     type='number',
@@ -59,22 +59,21 @@ layout = html.Div([
                     style={"font-family": "'Anonymous Pro'", 'width':'200px', 'font-size':'14pt','padding' : '5px 10px'}
                 )],style={"font-family": "'Anonymous Pro'",'display':'inline-block'}),
             html.Br(),
-            html.Button(children=['Submit'], id='submit',  n_clicks=0)
+            html.Button(children=['Загрузить'], id='submit',  n_clicks=0, className='button-28', style={"width":"200px"})
         ], style={'margin' : '0 auto'}, id="login_form", hidden=False)
     ], style={'display' : 'block', 'text-align' : 'center', 'padding' : 2}),
 
 
 
-
-    html.H1(children='Data deletion', style={'textAlign':'center',"font-family": "'Anonymous Pro'"}),
+    html.H1(children='Удаление данных', style={'textAlign':'center',"font-family": "'Anonymous Pro'"}),
     html.Div(children=[
-        html.H3("You successfully added data", hidden=True, id="page_header", style={"font-family": "'Anonymous Pro'"}),
+        html.H3("Вы успешно удалили данные", hidden=True, id="page_header", style={"font-family": "'Anonymous Pro'"}),
         # login form
         html.Div(children=[
-            html.P(children=["Region: ", dcc.Dropdown(df_init.df.region.unique(), 'Altai region', id='dropdown-region-del', style={"font-family": "'Anonymous Pro'",'width':'400px','display':'inline-block'})],
+            html.P(children=["Регион: ", dcc.Dropdown(df_init.df.region.unique(), 'Altai region', id='dropdown-region-del', style={"font-family": "'Anonymous Pro'",'width':'400px','display':'inline-block'})],
                 style={"font-family": "'Anonymous Pro'", 'display':'inline-block', 'padding-bottom':'8pt'}),
             html.Br(),
-            html.P(children=["Parameter: ",  dcc.Dropdown(df_init.df[['Average Fast Food format Check', \
+            html.P(children=["Параметр: ",  dcc.Dropdown(df_init.df[['Average Fast Food format Check', \
                 'Average amount of new deposit', \
                 'Average check in Restaurant format', \
                 'Average consumer loan application', \
@@ -93,7 +92,7 @@ layout = html.Div([
                 style={"font-family": "'Anonymous Pro'",'width':'500px','display':'inline-block'})],
                 style={"font-family": "'Anonymous Pro'",'display':'inline-block'}),
             html.Br(),
-            html.P(children=["Year: ", dcc.Input(
+            html.P(children=["Год: ", dcc.Input(
                     2020,
                     min=2000, max=2024, step=1,
                     id='input-year-del',
@@ -103,11 +102,11 @@ layout = html.Div([
                     style={"font-family": "'Anonymous Pro'", 'width':'200px', 'font-size':'14pt','padding' : '5px 10px'}
                 )],style={"font-family": "'Anonymous Pro'",'display':'inline-block'}),
             html.Br(),
-            html.P(children=["Month: ",  dcc.Dropdown(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], 
-                'January', id='dropdown-month-del', style={"font-family": "'Anonymous Pro'",'width':'400px','display':'inline-block'})],
+            html.P(children=["Месяц: ",  dcc.Dropdown(['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'], 
+                'Январь', id='dropdown-month-del', style={"font-family": "'Anonymous Pro'",'width':'400px','display':'inline-block'})],
                 style={"font-family": "'Anonymous Pro'", 'display':'inline-block', 'padding-bottom':'8pt'}),
             html.Br(),
-            html.Button(children=['Delete'], id='submit-del',  n_clicks=0)
+            html.Button(children=['Удалить'], id='submit-del',  n_clicks=0, className='button-28', style={"width":"200px"})
         ], style={'margin' : '0 auto'}, id="login_form", hidden=False)
     ], style={'display' : 'block', 'text-align' : 'center', 'padding' : 2}),
     html.Title("Data input")

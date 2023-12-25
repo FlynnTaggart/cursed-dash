@@ -12,29 +12,29 @@ df['year'] = df["date"].apply(lambda t: time.strptime(t, '%Y-%m-%d').tm_year)
 
 def match_month(month_str):
     match month_str:
-        case 'January':
+        case 'Январь':
             return '01'
-        case 'February':
+        case 'Февраль':
             return '02'
-        case 'March':
+        case 'Март':
             return '03'
-        case 'April':
+        case 'Апрель':
             return '04'
-        case 'May':
+        case 'Май':
             return '05'
-        case 'June':
+        case 'Июнь':
             return '06'
-        case 'July':
+        case 'Июль':
             return '07'
-        case 'August':
+        case 'Август':
             return '08'
-        case 'September':
+        case 'Сентябрь':
             return '09'
-        case 'October':
+        case 'Октябрь':
             return '10'
-        case 'November':
+        case 'Ноябрь':
             return '11'
-        case 'December':
+        case 'Декабрь':
             return '12'
         case _:
             return '13'

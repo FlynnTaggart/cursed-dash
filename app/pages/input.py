@@ -124,7 +124,7 @@ layout = html.Div([
     prevent_initial_call=True
 )
 def update_bar(value_region, value_parameter, value_year, value_month, value_value, n_clicks):
-    date = f'{value_year}-{match_month(value_month)}-15'
+    date = f'{value_year}-{df_init.match_month(value_month)}-15'
     print(df_init.df.loc[(df_init.df['date'] == date) & (df_init.df['region'] == value_region)].empty)
     print(df_init.df.loc[(df_init.df['date'] == date) & (df_init.df['region'] == value_region)])
     if value_value != "" or value_value != 0:
@@ -148,40 +148,9 @@ def update_bar(value_region, value_parameter, value_year, value_month, value_val
     prevent_initial_call=True
 )
 def update_bar(value_region, value_parameter, value_year, value_month, n_clicks):
-    date = f'{value_year}-{match_month(value_month)}-15'
+    date = f'{value_year}-{df_init.match_month(value_month)}-15'
     print(df_init.df.loc[(df_init.df['date'] == date) & (df_init.df['region'] == value_region)].empty)
     print(df_init.df.loc[(df_init.df['date'] == date) & (df_init.df['region'] == value_region)])
     if not df_init.df.loc[(df_init.df['date'] == date) & (df_init.df['region'] == value_region)].empty:
         df_init.df.loc[(df_init.df['date'] == date) & (df_init.df['region'] == value_region), value_parameter] = 0
     return 
-
-
-
-def match_month(month_str):
-    match month_str:
-        case 'January':
-            return '01'
-        case 'February':
-            return '02'
-        case 'March':
-            return '03'
-        case 'April':
-            return '04'
-        case 'May':
-            return '05'
-        case 'June':
-            return '06'
-        case 'July':
-            return '07'
-        case 'August':
-            return '08'
-        case 'September':
-            return '09'
-        case 'October':
-            return '10'
-        case 'November':
-            return '11'
-        case 'December':
-            return '12'
-        case _:
-            return '13'

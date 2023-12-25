@@ -9,7 +9,7 @@ dash.register_page(__name__, name='Ввод данных', title='Ввод да�
 
 
 layout = html.Div([
-    html.H1(children='Ввод данных', style={'textAlign':'center',"font-family": "'Anonymous Pro'"}),
+    html.H1(children='Ввод данных', style={'textAlign':'center',"font-family": "'Anonymous Pro'", 'margin-top':'32px'}),
     html.Div(children=[
         html.H3("Вы успешно добавили данные", hidden=True, id="page_header", style={"font-family": "'Anonymous Pro'"}),
         # login form

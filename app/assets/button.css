@@ -1,3 +1,8 @@
+body {
+    margin-left: 32px;
+    margin-right: 32px;
+}
+
 .button-28 {
   appearance: none;
   background-color: transparent;
@@ -40,4 +45,9 @@
 .button-28:active {
   box-shadow: none;
   transform: translateY(0);
+}
+
+.navbar-nav{
+    margin-right: 0;
+    width: 150%;
 }

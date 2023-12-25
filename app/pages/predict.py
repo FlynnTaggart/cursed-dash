@@ -12,7 +12,7 @@ dash.register_page(__name__, name='Прогнозирование', title='Пр�
 
 
 layout = html.Div([
-    html.H1(children='Прогнозирование', style={'textAlign':'center',"font-family": "'Anonymous Pro'"}),
+    html.H1(children='Прогнозирование', style={'textAlign':'center',"font-family": "'Anonymous Pro'",'margin-top':'32px'}),
     html.P(children=["Регион: ", dcc.Dropdown(df_init.df.region.unique(), 'Altai region', id='dropdown-region-predict', style={"font-family": "'Anonymous Pro'",'width':'400px','display':'inline-block'})],
                 style={"font-family": "'Anonymous Pro'", 'display':'inline-block', 'padding-bottom':'8pt'}),
     html.Br(),

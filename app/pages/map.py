@@ -17,7 +17,7 @@ with urlopen('https://raw.githubusercontent.com/codeforamerica/click_that_hood/m
 
 
 layout = html.Div([
-    html.H1(children='Географическая визуализация данных', style={'textAlign':'center',"font-family": "'Anonymous Pro'"}),
+    html.H1(children='Географическая визуализация данных', style={'textAlign':'center',"font-family": "'Anonymous Pro'",'margin-top':'32px'}),
     html.P(children=["Параметр: ",  dcc.Dropdown(df_init.df[['Average Fast Food format Check', \
         'Average amount of new deposit', \
         'Average check in Restaurant format', \
